@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Scorpia — B2B work platform" />
+    <title>Scorpia | Робочий простір</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Головна навігація">
+        <a class="brand" href="#dashboard" aria-label="Scorpia">
+          <span class="brand-mark">S</span><span>SCORPIA</span>
+        </a>
+        <div class="workspace"><span class="workspace-dot"></span><span>Northstar Studio</span><button title="Змінити простір">⌄</button></div>
+        <nav class="nav">
+          <button class="nav-item active" data-view="dashboard"><span>▦</span>Огляд</button>
+          <button class="nav-item" data-view="tasks"><span>✓</span>Задачі <b id="taskCount">0</b></button>
+          <button class="nav-item" data-view="gantt"><span>▤</span>План проєкту</button>
+          <button class="nav-item" data-view="knowledge"><span>▱</span>База знань</button>
+          <button class="nav-item" data-view="goals"><span>◎</span>Цілі та OKR</button>
+        </nav>
+        <div class="sidebar-bottom">
+          <button class="nav-item" id="themeButton"><span>◐</span>Змінити тему</button>
+          <button class="profile"><span class="avatar">АМ</span><span><strong>Анна Мельник</strong><small>Product Lead</small></span><span>•••</span></button>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <button class="menu-button" aria-label="Відкрити меню">☰</button>
+          <label class="search"><span>⌕</span><input id="globalSearch" placeholder="Шукати задачі, документи та людей..." /></label>
+          <div class="top-actions"><button class="icon-button" title="Сповіщення">♧<i></i></button><button class="help">?</button></div>
+        </header>
+
+        <section id="dashboard" class="view active">
+          <div class="page-heading"><div><p class="eyebrow">Четвер, 17 вересня</p><h1>Доброго дня, Анно <span>✦</span></h1><p class="muted">Ось що потребує вашої уваги сьогодні.</p></div><button class="primary" data-open-task>+ Нова задача</button></div>
+          <div class="stat-grid">
+            <article class="stat-card"><span class="stat-icon aqua">✓</span><div><p>Задачі цього тижня</p><strong id="weekProgress">0 / 0</strong></div><em id="weekLabel">0% виконано</em><div class="progress"><i id="weekBar"></i></div></article>
+            <article class="stat-card"><span class="stat-icon purple">◎</span><div><p>Прогрес цілей</p><strong>68%</strong></div><em class="positive">+8% цього місяця</em><div class="progress"><i style="width:68%"></i></div></article>
+            <article class="stat-card"><span class="stat-icon lime">◷</span><div><p>Збережено часу</p><strong>12.5 год</strong></div><em>завдяки Scorpia AI</em><div class="spark">▁▂▃▂▅▆▅█</div></article>
+          </div>
+          <div class="dashboard-grid">
+            <section class="panel task-panel"><div class="panel-head"><div><h2>Мої пріоритети</h2><p>Задачі з дедлайном найближчим часом</p></div><button class="text-button" data-view-link="tasks">Усі задачі →</button></div><div id="priorityTasks" class="task-list"></div></section>
+            <section class="panel ai-panel"><div class="ai-head"><div class="ai-badge">✦</div><div><p class="eyebrow">SCORPIA AI</p><h2>Контекстний помічник</h2></div><span class="online">● Online</span></div><p class="ai-copy">Я проаналізував стан вашої команди. Є два важливі оновлення.</p><div class="ai-insight"><span>◉</span><p><strong>Ризик дедлайну</strong><br>Задача «Дизайн партнерського порталу» потребує уточнення до п’ятниці.</p></div><button class="ai-cta" data-open-ai>Відкрити AI-помічника <span>→</span></button></section>
+            <section class="panel activity"><div class="panel-head"><div><h2>Активність команди</h2><p>Останні оновлення у просторі</p></div></div><div class="activity-list"><p><span class="avatar small teal">ІБ</span><span><strong>Іван Бондар</strong> завершив задачу «API інтеграція»<small>12 хв тому</small></span></p><p><span class="avatar small violet">ОК</span><span><strong>Олена Кравчук</strong> оновила документ «Q4 Strategy»<small>47 хв тому</small></span></p><p><span class="avatar small orange">МД</span><span><strong>Марія Денисова</strong> додала коментар до «Запуск Campaign»<small>1 год тому</small></span></p></div></section>
+          </div>
+        </section>
+
+        <section id="tasks" class="view"><div class="page-heading"><div><p class="eyebrow">РОБОЧИЙ ПРОСТІР</p><h1>Задачі</h1><p class="muted">Керуйте роботою команди в одному місці.</p></div><button class="primary" data-open-task>+ Нова задача</button></div><div class="toolbar"><button class="filter active">Усі</button><button class="filter">Мої</button><button class="filter">В роботі</button><button class="filter">Завершені</button></div><section class="panel"><div id="allTasks" class="task-list full"></div></section></section>
+
+        <section id="gantt" class="view"><div class="page-heading"><div><p class="eyebrow">ПРОЄКТ</p><h1>Запуск партнерського порталу</h1><p class="muted">Вересень 2026 · 4 учасники</p></div><button class="secondary">Поділитися</button></div><section class="panel gantt"><div class="gantt-head"><span>Задача</span><div><b>15 вер</b><b>22 вер</b><b>29 вер</b><b>06 жов</b></div></div><div id="ganttRows"></div><p class="gantt-note">Перетягніть задачу, щоб оновити її план. Дані автоматично синхронізуються у вашому просторі.</p></section></section>
+
+        <section id="knowledge" class="view"><div class="page-heading"><div><p class="eyebrow">ЄДИНЕ ДЖЕРЕЛО ПРАВДИ</p><h1>База знань</h1><p class="muted">Важливий контекст завжди поруч із роботою.</p></div><button class="primary" id="addDocument">+ Новий документ</button></div><div id="documentGrid" class="document-grid"></div></section>
+
+        <section id="goals" class="view"><div class="page-heading"><div><p class="eyebrow">Q4 2026</p><h1>Цілі та OKR</h1><p class="muted">Вимірюйте прогрес і тримайте фокус на результаті.</p></div><button class="primary">+ Нова ціль</button></div><div id="goalsList" class="goal-list"></div></section>
+      </main>
+    </div>
+
+    <button class="ai-float" data-open-ai aria-label="Відкрити Scorpia AI">✦</button>
+    <dialog id="taskDialog"><form method="dialog" class="modal"><button class="close" value="cancel">×</button><p class="eyebrow">НОВА ЗАДАЧА</p><h2>Додайте роботу в план</h2><label>Назва задачі<input id="newTaskTitle" required maxlength="80" placeholder="Наприклад, Підготувати бриф" /></label><label>Пріоритет<select id="newTaskPriority"><option value="high">Високий</option><option value="medium" selected>Середній</option><option value="low">Низький</option></select></label><div class="modal-actions"><button value="cancel" class="secondary">Скасувати</button><button id="saveTask" value="default" class="primary">Створити задачу</button></div></form></dialog>
+    <dialog id="aiDialog"><div class="modal ai-modal"><button class="close" id="closeAi">×</button><div class="ai-head"><div class="ai-badge">✦</div><div><p class="eyebrow">SCORPIA AI</p><h2>Чим можу допомогти?</h2></div></div><div id="chatMessages" class="chat"><p class="bot-message">Я знаю контекст Northstar Studio. Запитайте про задачі, ризики дедлайнів або цілі команди.</p></div><form id="aiForm" class="chat-form"><input id="aiInput" autocomplete="off" placeholder="Напишіть запит..." /><button class="primary">Надіслати ↑</button></form></div></dialog>
+    <template id="taskTemplate"><article class="task-row"><span class="task-check" role="button" tabindex="0">✓</span><div class="task-main"><strong></strong><small></small></div><span class="priority"></span><span class="due"></span><button class="delete-task" title="Видалити">×</button></article></template>
+    <script src="app.js"></script>
+  </body>
+</html>
+
